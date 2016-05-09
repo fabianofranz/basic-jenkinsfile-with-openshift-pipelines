@@ -1,7 +1,9 @@
 node('agent'){
   stage 'frontend'
-  def builder = new com.openshift.jenkins.plugins.pipeline.OpenShiftBuilder("https://192.168.2.200:8443", "ruby-sample-build", "default", "", "false", "", "", "false", "")
-  step builder
+  def apiURL = 'https://192.168.2.200:8443'
+  def buildConfig = 'ruby-sample-build'
+  def namespace = 'default'
+  step new com.openshift.jenkins.plugins.pipeline.OpenShiftBuilder(apiURL, buildConfig, namespace, '', 'false', '', '', 'false', '')
   echo 'frontend built'
 
   stage 'database'
